@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Instagram Video Post</title>
+        
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    
+    <style>
+        
+* {
+    margin:0;
+    padding:0;
+    border:0.0px solid lightgrey;
+    font-family: Verdana, Tahoma, "Trebuchet MS", "DejuVu Sans", "Bitstream Vera Sans", sans-serif;
+}
+
+body {
+    height:100vh;
+}
+
+.container {
+    display:flex;
+    width:100%;
+    height:50px;
+}
+
+.player {
+    width:100%;
+}
+
+video {
+    width:100%;
+    height:100%;
+}
+
+.details {
+    height:100px;
+}
+
+.row1 {
+    height:50px;
+}
+
+.row2 {
+    height:;
+}
+
+.row4 {
+    height:30px;
+}
+
+.row5 {
+    height:75px;
+    padding-bottom:30px;
+}
+
+p , img {
+    height:fit-content;
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
+.row1 p {
+    text-align:center;
+    height:fit-content;
+    font-weight:500;
+    font-size:22px;
+    margin-left:20px;
+}
+
+.row1 img{
+    height:18px;
+    margin-top:auto;
+    margin-bottom:auto;
+    margin-left:10px;
+    
+    
+}
+
+.row2 img {
+    margin:auto;
+    margin-left:10px;
+    border-radius:50%;
+    height:30px;
+    margin-right:8px;
+    padding:2px;
+    border:0.5px solid lightgrey;
+}
+
+.row2 p {
+    font-size:14px;
+    font-weight:500;
+    padding:2px;
+}
+
+.row2 p:nth-child(3) {
+    margin-right:10px;
+    margin-left:auto;
+    transform:rotateZ(90deg);
+    font-size:15px;
+}
+
+.row4 img{
+    margin-left:10px;
+    height:22px;
+    margin-right:5px;
+}
+
+.row4 img:nth-child(5) {
+    margin-right:10px;
+    margin-left:auto;
+}
+
+.row5 p {
+    margin-top:10px;
+    font-size:14px;
+    margin-left:10px;
+}
+
+.vidcontrols {
+    position:absolute;
+    width:100vw;
+    background-color:;
+    height:360px;
+    margin-top:20px;
+}
+
+.vidcontrols svg {
+    margin-left:0%;
+    margin-top:35%;
+    height:80px;
+    display:none;
+}
+
+.like {
+    animation: pop 0.5s ease-in-out;
+}
+
+@keyframes pop {
+    0% {
+        transform:scale(0.1);
+    }
+    40% {
+        transform:scale(1.4);
+    }
+    80% {
+        transform:scale(1.1);
+    }
+    100% {
+        transform:scale(1);
+    }
+}
+
+.like2 {
+    animation: pop2 0.5s ease-in-out;
+}
+
+@keyframes pop2 {
+    0% {
+        transform:scale(1);
+    }
+    40% {
+        transform:scale(1.2);
+    }
+    80% {
+        transform:scale(1.1);
+    }
+    100% {
+        transform:scale(1);
+    }
+}
+
+.sound {
+    margin:0;
+    position:absolute;
+    height:30px;
+    width:30px;
+    margin-top:-35px;
+    right:5px;
+    background-color:;
+}
+
+#love2 {
+    padding-top:4px;
+    padding-bottom:4px;
+    margin-top:0;
+    margin-bottom:0;
+}
+
+#likes {
+    display:none;
+}
+
+.row5 .date {
+    font-size:10px;
+    color:grey;
+}
+
+.postpage {
+    background-color:grey;
+    z-index:25;
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+}
+    </style>
+    
+    <script>
+        
+        window.onload = () => {
+
+var video = document.getElementById("video");
+var minilove = document.getElementById("love2");
+var like = true;
+window.onclick = () => {
+  if(video.muted)
+  video.muted = !video.muted;
+};
+check();
+video.addEventListener("dblclick", function() {
+
+let love = document.getElementById("love");
+let love2 =  document.getElementById("love2");
+love.style.display = "block";
+love2.src = "https://i.ibb.co/7gSfwvk/1644975789673.png";
+like = true;
+check();
+love.classList.add("like");
+love2.classList.add("like2");
+
+setTimeout( () => {
+document.getElementById("love").classList.remove("like");
+setTimeout( () => {
+love.style.display = "none";
+},400);
+document.getElementById("love2").classList.remove("like2");
+},500);
+ 
+});
+
+
+minilove.onclick = () => {
+    likekaro();
+    check();
+}
+
+//document.getElementById("row4").onclick = () => {
+//    likekaro();
+//}
+
+function likekaro() {
+    
+    let love3 = document.getElementById("love2");
+    
+    if(love3.src != "https://i.ibb.co/tx9ccs7/1644975366316.png") {
+    love3.src = "https://i.ibb.co/tx9ccs7/1644975366316.png";
+    like = false;
+    }
+    else
+    {
+        love3.src = "https://i.ibb.co/7gSfwvk/1644975789673.png";
+        like = true;
+    }
+    love3.classList.add("like2");
+    setTimeout( () => {
+document.getElementById("love2").classList.remove("like2");
+},500);
+
+}
+
+function check() {
+    if(like) {
+    document.getElementById("views").style.display = "none";
+document.getElementById("likes").style.display = "block";
+    }
+    else {
+document.getElementById("views").style.display = "block";
+document.getElementById("likes").style.display = "none";
+    }
+}
+
+}
+        
+    </script>
+    
+        
+        
+        
+    </head>
+    <body>
+    
+    <div id="postpage">
+    
+    <div class="container row1">
+        
+        <img src="https://i.ibb.co/Tb6MmDM/1644945512349.png" />
+        
+        <p> Video</p>
+        
+    </div>
+    
+    <div class="container row2">
+        
+        <img height="24px" src="https://i.ibb.co/pyqDLtM/Q-1644975073159.jpg" />
+        
+        <p> mr_alone_gamer__</p>
+        
+        <p> ••• </p>
+        
+    </div>
+    
+    <div id="player" class="player row3">
+    
+    <div id="controls" class="vidcontrols">
+    
+<svg id="love"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    x="0%" y="0%"
+    width="100%" height="100%"
+    viewBox="0 0 24.0 24.0"
+    enable-background="new 0 0 24.0 24.0"
+    xml:space="preserve">
+    
+    <path
+        fill="#FFFFFF"
+        stroke="#FF0000"
+        fill-opacity="1.000"
+        stroke-opacity="1.000"
+        fill-rule="nonzero"
+        stroke-width="0.0"
+        stroke-linejoin="miter"
+        stroke-linecap="square"
+        d="M12.07,5.26C14.29,1.77,20.01,1.77,22.35,5.84C24.38,9.56,23.17,13.00,20.22,15.50L13.46,21.51Q12.00,22.83,10.74,21.47L4.08,15.63C2.78,14.55,0.46,11.93,0.90,8.74C1.33,5.56,3.36,2.83,6.81,2.70C8.81,2.56,10.48,3.27,12.07,5.26z"/>
+</svg>
+
+    
+    
+    
+    </div>
+        <video id="video" poster="https://i.ibb.co/SJqJHLz/images-2022-02-16-T133034.jpg" muted autoplay loop>
+                        <source src="https://dl.dropboxusercontent.com/s/2xs7qp9a6gibc8o/video.mp4?dl=0" >
+        </video>
+        
+        
+        
+        
+    </div>
+    
+    <div id="row4" class="container row4">
+        
+        <div class="sound">
+            
+        </div>
+        
+        
+        <img id="love2" class="love" src="https://i.ibb.co/7gSfwvk/1644975789673.png" />
+        
+        <img class="comment" src="https://i.ibb.co/YcNfzNZ/1644975383205.png" />
+        
+        <img class="share" src="https://i.ibb.co/PmYTPFh/1644975406613.png" />
+        
+        <img class="save" src="https://i.ibb.co/6vcDzLD/1644975428546.png" />
+        
+    </div>
+    
+    <div class="details row5">
+        
+        <p id="views"> <b>240 views</b></p>
+        <p id="likes">Liked by <b>You</b> and <b>48 others</b></p>
+        
+        <p> <b>mr_alone_gamer__</b> Surprise 😜</p>
+        
+        <p class="date">22 October 2021</p>
+        
+    </div>
+    
+    
+    
+    
+    
+    
+    </div>
+        
+    </body>
+</html>
